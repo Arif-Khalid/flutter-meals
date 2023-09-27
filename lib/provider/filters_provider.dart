@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:meals/screens/filters.dart';
 
 enum Filter {
   glutenFree,

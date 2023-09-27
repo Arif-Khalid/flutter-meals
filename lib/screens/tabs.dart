@@ -32,10 +32,10 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  void _setScreen(String identifier) async {
+  void _setScreen(String identifier) {
     Navigator.pop(context);
     if (identifier == 'filters') {
-      final result = await Navigator.push<Map<Filter, bool>>(
+      Navigator.push<Map<Filter, bool>>(
         context,
         MaterialPageRoute(
           builder: (ctx) => const FiltersScreen(),
