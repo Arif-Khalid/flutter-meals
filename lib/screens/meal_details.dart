@@ -28,27 +28,29 @@ class MealDetailsScreen extends ConsumerWidget {
               ),
             );
           },
-          icon: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (child, animation) => RotationTransition(
-              turns: Tween<double>(begin: 0.8, end: 1).animate(animation),
-              child: child,
-            ),
-            child: Icon(
-              isFavorite ? Icons.star : Icons.star_border,
-              key: ValueKey(isFavorite),
+          icon: AnimatedCrossFade(
+            firstChild: const Icon(Icons.star),
+            secondChild: const Icon(Icons.star_border),
+            crossFadeState: isFavorite
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: const Duration(
+              milliseconds: 500,
             ),
           ),
-        )
+        ),
       ]),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              meal.imageUrl,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 300,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 300,
+              ),
             ),
             const SizedBox(
               height: 14,
